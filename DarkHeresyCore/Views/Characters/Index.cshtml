@@ -1,0 +1,168 @@
+@model IEnumerable<DarkHeresyCore.Models.Character>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CharacterName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlayerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WeaponSkill)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BallisticSkill)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Strength)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Toughness)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Agility)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Intelligence)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Perception)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Willpower)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fellowship)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CareerId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Career)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rank)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HomeWorld)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Quirk)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Divination)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrdoFaction)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Wounds)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FatePoints)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalXp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SpentXp)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CharacterName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WeaponSkill)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BallisticSkill)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Strength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Toughness)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agility)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Intelligence)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Perception)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Willpower)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fellowship)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CareerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Career)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeWorld)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quirk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Divination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrdoFaction)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wounds)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FatePoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalXp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpentXp)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

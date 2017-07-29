@@ -1,0 +1,68 @@
+@model IEnumerable<DarkHeresyCore.Models.Service>
+
+@{
+    ViewData["Title"] = "Service";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles
+{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.15/datatables.min.css" />
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Service</h3>
+            </div>
+            <div class="panel-body">
+                <table id="table" class="table table-striped table-bordered table-hover table-responsive">
+                    <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.Cost)</th>
+                        <th>@Html.DisplayNameFor(model => model.MaterialCost)</th>
+                        <th>@Html.DisplayNameFor(model => model.Effect)</th>
+                        <th>@Html.DisplayNameFor(model => model.Difficulty)</th>
+                        <th>@Html.DisplayNameFor(model => model.Availability)</th>
+                        <th>@Html.DisplayNameFor(model => model.Category)</th>
+                        <th>@Html.DisplayNameFor(model => model.Source)</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.15/datatables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var table = $("#table").DataTable({
+                "ajax": {
+                    "url": "/api/Service",
+                    dataSrc: ""
+                },
+                "columns": [
+                    {
+                        "data": "name",
+                        "render": function (data, type, service) {
+                            return "<a href='/Service/Details/" + service.id + "'>" + service.name + "</a>";
+                        }
+                    },
+                    { "data": "cost" },
+                    { "data": "materialCost" },
+                    { "data": "effect" },
+                    { "data": "difficulty" },
+                    { "data": "availability.name" },
+                    { "data": "category.name" },
+                    { "data": "source" }
+                ]
+            });
+        });
+
+    </script>
+}
+

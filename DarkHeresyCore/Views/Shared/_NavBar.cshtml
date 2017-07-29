@@ -1,0 +1,33 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-area="" asp-controller="RangedWeapons" asp-action="Index" class="navbar-brand">DarkHeresy</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a asp-area="" asp-controller="RangedWeapons" asp-action="Index">Ranged</a></li>
+                <li><a asp-area="" asp-controller="MeleeWeapons" asp-action="Index">Melee</a></li>
+                <li><a asp-area="" asp-controller="Armors" asp-action="Index">Armor</a></li>
+                <li><a asp-area="" asp-controller="Ammos" asp-action="Index">Ammo</a></li>
+                <li><a asp-area="" asp-controller="Gears" asp-action="Index">Gear</a></li>
+                <li><a asp-area="" asp-controller="Services" asp-action="Index">Service</a></li>
+                <li><a asp-area="" asp-controller="Cybernetics" asp-action="Index">Cybernetic</a></li>
+                <li><a asp-area="" asp-controller="WeaponUpgrades" asp-action="Index">Upgrades</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@

@@ -1,0 +1,162 @@
+@model DarkHeresyCore.Models.Character
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Character</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="Id" />
+        <dt>
+            @Html.DisplayNameFor(model => model.CharacterName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CharacterName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PlayerName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PlayerName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WeaponSkill)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WeaponSkill)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BallisticSkill)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BallisticSkill)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Strength)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Strength)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Toughness)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Toughness)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Agility)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Agility)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Intelligence)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Intelligence)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Perception)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Perception)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Willpower)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Willpower)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fellowship)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fellowship)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CareerId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CareerId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Career)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Career)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Rank)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rank)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeWorld)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HomeWorld)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Quirk)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quirk)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Divination)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Divination)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrdoFaction)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrdoFaction)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Wounds)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Wounds)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FatePoints)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FatePoints)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalXp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalXp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SpentXp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SpentXp)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

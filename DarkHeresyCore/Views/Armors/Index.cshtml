@@ -1,0 +1,67 @@
+@model IEnumerable<DarkHeresyCore.Models.Armor>
+
+@{
+    ViewData["Title"] = "Armor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles
+{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.15/datatables.min.css" />
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Armor</h3>
+            </div>
+            <div class="panel-body">
+                <table id="armorTable" class="table table-striped table-bordered table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Name)</th>
+                            <th>@Html.DisplayNameFor(model => model.LocCovered)</th>
+                            <th>@Html.DisplayNameFor(model => model.Ap)</th>
+                            <th>@Html.DisplayNameFor(model => model.Weight)</th>
+                            <th>@Html.DisplayNameFor(model => model.Cost)</th>
+                            <th>@Html.DisplayNameFor(model => model.Availability)</th>
+                            <th>@Html.DisplayNameFor(model => model.Category)</th>
+                            <th>@Html.DisplayNameFor(model => model.Source)</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.15/datatables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var table = $("#armorTable").DataTable({
+                "ajax": {
+                    "url": "/api/Armors",
+                    dataSrc: ""
+                },
+                "columns": [
+                    {
+                        "data": "name",
+                        "render": function (data, type, armor) {
+                            return "<a href='/Armors/Details/" + armor.id + "'>" + armor.name + "</a>";
+                        }
+                    },
+                    { "data": "locCovered" },
+                    { "data": "ap" },
+                    { "data": "weight" },
+                    { "data": "cost" },
+                    { "data": "availability.name" },
+                    { "data": "category.name" },
+                    { "data": "source" }
+                ]
+            });
+        });
+
+    </script>
+}
