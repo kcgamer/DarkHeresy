@@ -2,27 +2,36 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using DarkHeresy.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DarkHeresyCore;
-using DarkHeresyCore.Models;
+using DarkHeresy;
+using DarkHeresy.ViewModels;
 
-namespace DarkHeresyCore.Controllers
+namespace DarkHeresy.Controllers
 {
     public class CharactersController : Controller
     {
         private readonly DarkHeresyContext _context;
+        private readonly IMapper _mapper;
 
-        public CharactersController(DarkHeresyContext context)
+        public CharactersController(DarkHeresyContext context, IMapper mapper)
         {
-            _context = context;    
+            _context = context;
+            _mapper = mapper;
         }
 
         // GET: Characters
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Characters.ToListAsync());
+            var characters = await _context.Characters
+                .Include(c => c.CharacterSkills)
+                .Include(c => c.CharacterMelees)
+                .Include(c => c.CharacterRangeds)
+                .ToListAsync();
+            return View(characters as IEnumerable<CharacterViewModel>);
         }
 
         // GET: Characters/Details/5
@@ -39,8 +48,8 @@ namespace DarkHeresyCore.Controllers
             {
                 return NotFound();
             }
-
-            return View(character);
+            var characterViewModel = new CharacterViewModel(character);
+            return View(characterViewModel);
         }
 
         // GET: Characters/Create
@@ -78,7 +87,9 @@ namespace DarkHeresyCore.Controllers
             {
                 return NotFound();
             }
-            return View(character);
+
+            var characterViewModel = new CharacterViewModel(character);
+            return View(characterViewModel);
         }
 
         // POST: Characters/Edit/5
@@ -86,7 +97,7 @@ namespace DarkHeresyCore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CharacterName,PlayerName,WeaponSkill,BallisticSkill,Strength,Toughness,Agility,Intelligence,Perception,Willpower,Fellowship,CareerId,Career,Rank,HomeWorld,Quirk,Divination,OrdoFaction,Description,Wounds,FatePoints,TotalXp,SpentXp")] Character character)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CharacterName,PlayerName,WeaponSkill,BallisticSkill,Strength,Toughness,Agility,Intelligence,Perception,Willpower,Fellowship,Career,Rank,HomeWorld,Quirk,Divination,OrdoFaction,Description,Wounds,FatePoints,TotalXp,SpentXp")] Character character)
         {
             if (id != character.Id)
             {
@@ -113,7 +124,8 @@ namespace DarkHeresyCore.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(character);
+            var characterViewModel = new CharacterViewModel(character);
+            return View(characterViewModel);
         }
 
         // GET: Characters/Delete/5

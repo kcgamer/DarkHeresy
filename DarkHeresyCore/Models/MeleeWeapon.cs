@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using DarkHeresy.Models;
 
-namespace DarkHeresyCore.Models
+namespace DarkHeresy.Models
 {
     public  class MeleeWeapon
     {
@@ -24,5 +25,7 @@ namespace DarkHeresyCore.Models
         public  Availability Availability { get; set; }
         public  Category Category { get; set; }
         public  Class Class { get; set; }
+
+        public ICollection<CharacterMelee> CharacterMelees { get; set; }
     }
 }

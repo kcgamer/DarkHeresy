@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace DarkHeresyCore.Migrations
+namespace DarkHeresy.Migrations
 {
-    public partial class AddCharacterAndSkillsModel : Migration
+    public partial class CharacterSkillsMeleeRangedManyToMany : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Character",
+                name: "Characters",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -47,39 +47,39 @@ namespace DarkHeresyCore.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Character", x => x.Id);
+                    table.PrimaryKey("PK_Characters", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Character_Armor_ChestArmorId",
+                        name: "FK_Characters_Armor_ChestArmorId",
                         column: x => x.ChestArmorId,
                         principalTable: "Armor",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Character_Armor_HeadArmorId",
+                        name: "FK_Characters_Armor_HeadArmorId",
                         column: x => x.HeadArmorId,
                         principalTable: "Armor",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Character_Armor_LeftArmArmorId",
+                        name: "FK_Characters_Armor_LeftArmArmorId",
                         column: x => x.LeftArmArmorId,
                         principalTable: "Armor",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Character_Armor_LeftLegArmorId",
+                        name: "FK_Characters_Armor_LeftLegArmorId",
                         column: x => x.LeftLegArmorId,
                         principalTable: "Armor",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Character_Armor_RightArmArmorId",
+                        name: "FK_Characters_Armor_RightArmArmorId",
                         column: x => x.RightArmArmorId,
                         principalTable: "Armor",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Character_Armor_RightLegArmorId",
+                        name: "FK_Characters_Armor_RightLegArmorId",
                         column: x => x.RightLegArmorId,
                         principalTable: "Armor",
                         principalColumn: "Id",
@@ -87,7 +87,7 @@ namespace DarkHeresyCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Skill",
+                name: "Skills",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -98,11 +98,59 @@ namespace DarkHeresyCore.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Skill", x => x.Id);
+                    table.PrimaryKey("PK_Skills", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CharacterSkill",
+                name: "CharacterMelees",
+                columns: table => new
+                {
+                    CharacterId = table.Column<int>(nullable: false),
+                    MeleeWeaponId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CharacterMelees", x => new { x.CharacterId, x.MeleeWeaponId });
+                    table.ForeignKey(
+                        name: "FK_CharacterMelees_Characters_CharacterId",
+                        column: x => x.CharacterId,
+                        principalTable: "Characters",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CharacterMelees_MeleeWeapons_MeleeWeaponId",
+                        column: x => x.MeleeWeaponId,
+                        principalTable: "MeleeWeapons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CharacterRangeds",
+                columns: table => new
+                {
+                    CharacterId = table.Column<int>(nullable: false),
+                    RangedWeaponId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CharacterRangeds", x => new { x.CharacterId, x.RangedWeaponId });
+                    table.ForeignKey(
+                        name: "FK_CharacterRangeds_Characters_CharacterId",
+                        column: x => x.CharacterId,
+                        principalTable: "Characters",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CharacterRangeds_RangedWeapons_RangedWeaponId",
+                        column: x => x.RangedWeaponId,
+                        principalTable: "RangedWeapons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CharacterSkills",
                 columns: table => new
                 {
                     CharacterId = table.Column<int>(nullable: false),
@@ -114,67 +162,83 @@ namespace DarkHeresyCore.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CharacterSkill", x => new { x.CharacterId, x.SkillId });
+                    table.PrimaryKey("PK_CharacterSkills", x => new { x.CharacterId, x.SkillId });
                     table.ForeignKey(
-                        name: "FK_CharacterSkill_Character_CharacterId",
+                        name: "FK_CharacterSkills_Characters_CharacterId",
                         column: x => x.CharacterId,
-                        principalTable: "Character",
+                        principalTable: "Characters",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CharacterSkill_Skill_SkillId",
+                        name: "FK_CharacterSkills_Skills_SkillId",
                         column: x => x.SkillId,
-                        principalTable: "Skill",
+                        principalTable: "Skills",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Character_ChestArmorId",
-                table: "Character",
+                name: "IX_Characters_ChestArmorId",
+                table: "Characters",
                 column: "ChestArmorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Character_HeadArmorId",
-                table: "Character",
+                name: "IX_Characters_HeadArmorId",
+                table: "Characters",
                 column: "HeadArmorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Character_LeftArmArmorId",
-                table: "Character",
+                name: "IX_Characters_LeftArmArmorId",
+                table: "Characters",
                 column: "LeftArmArmorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Character_LeftLegArmorId",
-                table: "Character",
+                name: "IX_Characters_LeftLegArmorId",
+                table: "Characters",
                 column: "LeftLegArmorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Character_RightArmArmorId",
-                table: "Character",
+                name: "IX_Characters_RightArmArmorId",
+                table: "Characters",
                 column: "RightArmArmorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Character_RightLegArmorId",
-                table: "Character",
+                name: "IX_Characters_RightLegArmorId",
+                table: "Characters",
                 column: "RightLegArmorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CharacterSkill_SkillId",
-                table: "CharacterSkill",
+                name: "IX_CharacterMelees_MeleeWeaponId",
+                table: "CharacterMelees",
+                column: "MeleeWeaponId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CharacterRangeds_RangedWeaponId",
+                table: "CharacterRangeds",
+                column: "RangedWeaponId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CharacterSkills_SkillId",
+                table: "CharacterSkills",
                 column: "SkillId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CharacterSkill");
+                name: "CharacterMelees");
 
             migrationBuilder.DropTable(
-                name: "Character");
+                name: "CharacterRangeds");
 
             migrationBuilder.DropTable(
-                name: "Skill");
+                name: "CharacterSkills");
+
+            migrationBuilder.DropTable(
+                name: "Characters");
+
+            migrationBuilder.DropTable(
+                name: "Skills");
         }
     }
 }

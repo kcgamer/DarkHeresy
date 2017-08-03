@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DarkHeresyCore.Models
+namespace DarkHeresy.Models
 {
     public  class RangedWeapon
     {
@@ -25,5 +25,7 @@ namespace DarkHeresyCore.Models
         public  Availability Availability { get; set; }
         public  Category Category { get; set; }
         public  Class Class { get; set; }
+
+        public ICollection<CharacterRanged> CharacterRangeds { get; set; }
     }
 }

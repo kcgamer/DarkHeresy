@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
-using DarkHeresyCore.Models;
+using DarkHeresy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -24,6 +24,8 @@ namespace DarkHeresy
         public DbSet<Character> Characters { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<CharacterSkill> CharacterSkills { get; set; }
+        public DbSet<CharacterMelee> CharacterMelees { get; set; }
+        public DbSet<CharacterRanged> CharacterRangeds { get; set; }
 
 
         public DarkHeresyContext(DbContextOptions<DarkHeresyContext> options) : base(options)
@@ -324,6 +326,36 @@ namespace DarkHeresy
 
                 entity.Property(e => e.OrdoFaction)
                     .HasMaxLength(50);
+
+                entity.HasOne(c => c.HeadArmor)
+                    .WithMany(a => a.HeadCharacters)
+                    .HasForeignKey(c => c.HeadArmorId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(c => c.ChestArmor)
+                    .WithMany(a => a.ChestCharacters)
+                    .HasForeignKey(c => c.ChestArmorId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(c => c.LeftArmArmor)
+                    .WithMany(a => a.LeftArmCharacters)
+                    .HasForeignKey(c => c.LeftArmArmorId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(c => c.RightArmArmor)
+                    .WithMany(a => a.RightArmCharacters)
+                    .HasForeignKey(c => c.RightArmArmorId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(c => c.LeftLegArmor)
+                    .WithMany(a => a.LeftLegCharacters)
+                    .HasForeignKey(c => c.LeftLegArmorId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(c => c.RightLegArmor)
+                    .WithMany(a => a.RightLegCharacters)
+                    .HasForeignKey(c => c.RightLegArmorId)
+                    .OnDelete(DeleteBehavior.Restrict);
             });
 
             modelBuilder.Entity<Skill>(entity =>
@@ -343,11 +375,42 @@ namespace DarkHeresy
 
                 entity.HasOne(cs => cs.Character)
                     .WithMany(c => c.CharacterSkills)
-                    .HasForeignKey(cs => cs.CharacterId);
+                    .HasForeignKey(cs => cs.CharacterId)
+                    .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(cs => cs.Skill)
                     .WithMany(s => s.CharacterSkills)
-                    .HasForeignKey(cs => cs.SkillId);
+                    .HasForeignKey(cs => cs.SkillId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<CharacterMelee>(entity =>
+            {
+                entity.HasKey(cm => new {cm.CharacterId, cm.MeleeWeaponId});
+
+                entity.HasOne(cm => cm.Character)
+                    .WithMany(c => c.CharacterMelees)
+                    .HasForeignKey(cm => cm.CharacterId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(cm => cm.MeleeWeapon)
+                    .WithMany(m => m.CharacterMelees)
+                    .HasForeignKey(cm => cm.MeleeWeaponId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+            modelBuilder.Entity<CharacterRanged>(entity =>
+            {
+                entity.HasKey(cm => new { cm.CharacterId, cm.RangedWeaponId });
+
+                entity.HasOne(cm => cm.Character)
+                    .WithMany(c => c.CharacterRangeds)
+                    .HasForeignKey(cm => cm.CharacterId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(cm => cm.RangedWeapon)
+                    .WithMany(m => m.CharacterRangeds)
+                    .HasForeignKey(cm => cm.RangedWeaponId)
+                    .OnDelete(DeleteBehavior.Restrict);
             });
         }
     }

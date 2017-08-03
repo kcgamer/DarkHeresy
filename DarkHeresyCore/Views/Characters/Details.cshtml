@@ -1,4 +1,4 @@
-@model DarkHeresyCore.Models.Character
+@model DarkHeresy.ViewModels.CharacterViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -76,12 +76,6 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Fellowship)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CareerId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CareerId)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Career)

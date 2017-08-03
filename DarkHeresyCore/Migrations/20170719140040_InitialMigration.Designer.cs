@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using DarkHeresyCore.Models;
+using DarkHeresy.Models;
 
-namespace DarkHeresyCore.Migrations
+namespace DarkHeresy.Migrations
 {
     [DbContext(typeof(DarkHeresyContext))]
     [Migration("20170719140040_InitialMigration")]

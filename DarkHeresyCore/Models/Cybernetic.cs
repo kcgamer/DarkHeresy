@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DarkHeresyCore.Models
+namespace DarkHeresy.Models
 {
     public  class Cybernetic
     {

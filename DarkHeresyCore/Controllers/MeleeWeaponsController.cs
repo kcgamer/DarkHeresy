@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DarkHeresy.Models;
+using DarkHeresy.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DarkHeresyCore.Models;
-using DarkHeresyCore.ViewModels;
 
-namespace DarkHeresyCore.Controllers
+namespace DarkHeresy.Controllers
 {
     public class MeleeWeaponsController : Controller
     {
@@ -22,7 +22,10 @@ namespace DarkHeresyCore.Controllers
         // GET: MeleeWeapon
         public async Task<IActionResult> Index()
         {
-            var darkHeresyContext = _context.MeleeWeapons.Include(m => m.Availability).Include(m => m.Category).Include(m => m.Class);
+            var darkHeresyContext = _context.MeleeWeapons
+                .Include(m => m.Availability)
+                .Include(m => m.Category)
+                .Include(m => m.Class);
             return View(await darkHeresyContext.ToListAsync() as IEnumerable<MeleeWeaponViewModel>);
         }
 

@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Properties\PublishProfiles\DarkHeresy - Web Deploy.pubxml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\lib\bootstrap\dist\css\bootstrap-cyborg.css" />
     <Content Include="wwwroot\lib\bootstrap\dist\css\bootstrap-darkly.css" />
   </ItemGroup>
@@ -35,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\Api\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 
 </Project>

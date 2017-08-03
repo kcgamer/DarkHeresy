@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using DarkHeresyCore.Dtos;
-using DarkHeresyCore.Models;
+using DarkHeresy.Dtos;
+using DarkHeresy.Models;
 
-namespace DarkHeresyCore
+namespace DarkHeresy
 {
     public class MappingProfile : Profile
 
@@ -26,6 +26,8 @@ namespace DarkHeresyCore
             CreateMap<Service, ServiceDto>();
             CreateMap<Source, SourceDto>();
             CreateMap<WeaponUpgrade, WeaponUpgradeDto>();
+            CreateMap<Character, CharacterDto>();
+            CreateMap<Skill, SkillDto>();
 
             //Dto to Domain
             CreateMap<AmmoDto, Ammo>();
@@ -40,6 +42,8 @@ namespace DarkHeresyCore
             CreateMap<ServiceDto, Service>();
             CreateMap<SourceDto, Source>();
             CreateMap<WeaponUpgradeDto, WeaponUpgrade>();
+            CreateMap<CharacterDto, Character>();
+            CreateMap<SkillDto, Skill>();
 
         }
     }

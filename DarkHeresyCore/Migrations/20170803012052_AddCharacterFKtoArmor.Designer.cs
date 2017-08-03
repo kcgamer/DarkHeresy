@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using DarkHeresyCore.Models;
+using DarkHeresy;
 
-namespace DarkHeresyCore.Migrations
+namespace DarkHeresy.Migrations
 {
     [DbContext(typeof(DarkHeresyContext))]
-    [Migration("20170729144904_AddCharacterAndSkillsModel")]
-    partial class AddCharacterAndSkillsModel
+    [Migration("20170803012052_AddCharacterFKtoArmor")]
+    partial class AddCharacterFKtoArmor
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,7 +17,7 @@ namespace DarkHeresyCore.Migrations
                 .HasAnnotation("ProductVersion", "1.1.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Ammo", b =>
+            modelBuilder.Entity("DarkHeresy.Models.Ammo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -45,7 +45,7 @@ namespace DarkHeresyCore.Migrations
                     b.ToTable("Ammo");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Armor", b =>
+            modelBuilder.Entity("DarkHeresy.Models.Armor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -84,7 +84,7 @@ namespace DarkHeresyCore.Migrations
                     b.ToTable("Armor");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Availability", b =>
+            modelBuilder.Entity("DarkHeresy.Models.Availability", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -98,7 +98,7 @@ namespace DarkHeresyCore.Migrations
                     b.ToTable("Availability");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Category", b =>
+            modelBuilder.Entity("DarkHeresy.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -116,7 +116,7 @@ namespace DarkHeresyCore.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Character", b =>
+            modelBuilder.Entity("DarkHeresy.Models.Character", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -205,10 +205,36 @@ namespace DarkHeresyCore.Migrations
 
                     b.HasIndex("RightLegArmorId");
 
-                    b.ToTable("Character");
+                    b.ToTable("Characters");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.CharacterSkill", b =>
+            modelBuilder.Entity("DarkHeresy.Models.CharacterMelee", b =>
+                {
+                    b.Property<int>("CharacterId");
+
+                    b.Property<int>("MeleeWeaponId");
+
+                    b.HasKey("CharacterId", "MeleeWeaponId");
+
+                    b.HasIndex("MeleeWeaponId");
+
+                    b.ToTable("CharacterMelees");
+                });
+
+            modelBuilder.Entity("DarkHeresy.Models.CharacterRanged", b =>
+                {
+                    b.Property<int>("CharacterId");
+
+                    b.Property<int>("RangedWeaponId");
+
+                    b.HasKey("CharacterId", "RangedWeaponId");
+
+                    b.HasIndex("RangedWeaponId");
+
+                    b.ToTable("CharacterRangeds");
+                });
+
+            modelBuilder.Entity("DarkHeresy.Models.CharacterSkill", b =>
                 {
                     b.Property<int>("CharacterId");
 
@@ -226,10 +252,10 @@ namespace DarkHeresyCore.Migrations
 
                     b.HasIndex("SkillId");
 
-                    b.ToTable("CharacterSkill");
+                    b.ToTable("CharacterSkills");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Class", b =>
+            modelBuilder.Entity("DarkHeresy.Models.Class", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -243,7 +269,7 @@ namespace DarkHeresyCore.Migrations
                     b.ToTable("Class");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Cybernetic", b =>
+            modelBuilder.Entity("DarkHeresy.Models.Cybernetic", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -273,7 +299,7 @@ namespace DarkHeresyCore.Migrations
                     b.ToTable("Cybernetics");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Gear", b =>
+            modelBuilder.Entity("DarkHeresy.Models.Gear", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -307,7 +333,7 @@ namespace DarkHeresyCore.Migrations
                     b.ToTable("Gear");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.MeleeWeapon", b =>
+            modelBuilder.Entity("DarkHeresy.Models.MeleeWeapon", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -356,7 +382,7 @@ namespace DarkHeresyCore.Migrations
                     b.ToTable("MeleeWeapons");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.RangedWeapon", b =>
+            modelBuilder.Entity("DarkHeresy.Models.RangedWeapon", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -411,7 +437,7 @@ namespace DarkHeresyCore.Migrations
                     b.ToTable("RangedWeapons");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Service", b =>
+            modelBuilder.Entity("DarkHeresy.Models.Service", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -448,7 +474,7 @@ namespace DarkHeresyCore.Migrations
                     b.ToTable("Services");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Skill", b =>
+            modelBuilder.Entity("DarkHeresy.Models.Skill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -464,10 +490,10 @@ namespace DarkHeresyCore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Skill");
+                    b.ToTable("Skills");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Source", b =>
+            modelBuilder.Entity("DarkHeresy.Models.Source", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -485,7 +511,7 @@ namespace DarkHeresyCore.Migrations
                     b.ToTable("Sources");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.WeaponUpgrade", b =>
+            modelBuilder.Entity("DarkHeresy.Models.WeaponUpgrade", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -517,150 +543,170 @@ namespace DarkHeresyCore.Migrations
                     b.ToTable("WeaponUpgrades");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Ammo", b =>
+            modelBuilder.Entity("DarkHeresy.Models.Ammo", b =>
                 {
-                    b.HasOne("DarkHeresyCore.Models.Availability", "Availability")
+                    b.HasOne("DarkHeresy.Models.Availability", "Availability")
                         .WithMany("Ammo")
                         .HasForeignKey("AvailabilityId")
                         .HasConstraintName("FK_Ammo_Availability");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Armor", b =>
+            modelBuilder.Entity("DarkHeresy.Models.Armor", b =>
                 {
-                    b.HasOne("DarkHeresyCore.Models.Availability", "Availability")
+                    b.HasOne("DarkHeresy.Models.Availability", "Availability")
                         .WithMany("Armor")
                         .HasForeignKey("AvailabilityId")
                         .HasConstraintName("FK_Armor_Availability");
 
-                    b.HasOne("DarkHeresyCore.Models.Category", "Category")
+                    b.HasOne("DarkHeresy.Models.Category", "Category")
                         .WithMany("Armor")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_Armor_Category");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Character", b =>
+            modelBuilder.Entity("DarkHeresy.Models.Character", b =>
                 {
-                    b.HasOne("DarkHeresyCore.Models.Armor", "ChestArmor")
-                        .WithMany()
+                    b.HasOne("DarkHeresy.Models.Armor", "ChestArmor")
+                        .WithMany("ChestCharacters")
                         .HasForeignKey("ChestArmorId");
 
-                    b.HasOne("DarkHeresyCore.Models.Armor", "HeadArmor")
-                        .WithMany()
+                    b.HasOne("DarkHeresy.Models.Armor", "HeadArmor")
+                        .WithMany("HeadCharacters")
                         .HasForeignKey("HeadArmorId");
 
-                    b.HasOne("DarkHeresyCore.Models.Armor", "LeftArmArmor")
-                        .WithMany()
+                    b.HasOne("DarkHeresy.Models.Armor", "LeftArmArmor")
+                        .WithMany("LeftArmCharacters")
                         .HasForeignKey("LeftArmArmorId");
 
-                    b.HasOne("DarkHeresyCore.Models.Armor", "LeftLegArmor")
-                        .WithMany()
+                    b.HasOne("DarkHeresy.Models.Armor", "LeftLegArmor")
+                        .WithMany("LeftLegCharacters")
                         .HasForeignKey("LeftLegArmorId");
 
-                    b.HasOne("DarkHeresyCore.Models.Armor", "RightArmArmor")
-                        .WithMany()
+                    b.HasOne("DarkHeresy.Models.Armor", "RightArmArmor")
+                        .WithMany("RightArmCharacters")
                         .HasForeignKey("RightArmArmorId");
 
-                    b.HasOne("DarkHeresyCore.Models.Armor", "RightLegArmor")
-                        .WithMany()
+                    b.HasOne("DarkHeresy.Models.Armor", "RightLegArmor")
+                        .WithMany("RightLegCharacters")
                         .HasForeignKey("RightLegArmorId");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.CharacterSkill", b =>
+            modelBuilder.Entity("DarkHeresy.Models.CharacterMelee", b =>
                 {
-                    b.HasOne("DarkHeresyCore.Models.Character", "Character")
-                        .WithMany("CharacterSkills")
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("DarkHeresy.Models.Character", "Character")
+                        .WithMany("CharacterMelees")
+                        .HasForeignKey("CharacterId");
 
-                    b.HasOne("DarkHeresyCore.Models.Skill", "Skill")
-                        .WithMany("CharacterSkills")
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("DarkHeresy.Models.MeleeWeapon", "MeleeWeapon")
+                        .WithMany("CharacterMelees")
+                        .HasForeignKey("MeleeWeaponId");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Cybernetic", b =>
+            modelBuilder.Entity("DarkHeresy.Models.CharacterRanged", b =>
                 {
-                    b.HasOne("DarkHeresyCore.Models.Availability", "Availability")
+                    b.HasOne("DarkHeresy.Models.Character", "Character")
+                        .WithMany("CharacterRangeds")
+                        .HasForeignKey("CharacterId");
+
+                    b.HasOne("DarkHeresy.Models.RangedWeapon", "RangedWeapon")
+                        .WithMany("CharacterRangeds")
+                        .HasForeignKey("RangedWeaponId");
+                });
+
+            modelBuilder.Entity("DarkHeresy.Models.CharacterSkill", b =>
+                {
+                    b.HasOne("DarkHeresy.Models.Character", "Character")
+                        .WithMany("CharacterSkills")
+                        .HasForeignKey("CharacterId");
+
+                    b.HasOne("DarkHeresy.Models.Skill", "Skill")
+                        .WithMany("CharacterSkills")
+                        .HasForeignKey("SkillId");
+                });
+
+            modelBuilder.Entity("DarkHeresy.Models.Cybernetic", b =>
+                {
+                    b.HasOne("DarkHeresy.Models.Availability", "Availability")
                         .WithMany("Cybernetics")
                         .HasForeignKey("AvailabilityId")
                         .HasConstraintName("FK_Cybernetics_Availability");
 
-                    b.HasOne("DarkHeresyCore.Models.Category", "Category")
+                    b.HasOne("DarkHeresy.Models.Category", "Category")
                         .WithMany("Cybernetics")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_Cybernetics_Category");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Gear", b =>
+            modelBuilder.Entity("DarkHeresy.Models.Gear", b =>
                 {
-                    b.HasOne("DarkHeresyCore.Models.Availability", "Availability")
+                    b.HasOne("DarkHeresy.Models.Availability", "Availability")
                         .WithMany("Gear")
                         .HasForeignKey("AvailabilityId")
                         .HasConstraintName("FK_Gear_Availability");
 
-                    b.HasOne("DarkHeresyCore.Models.Category", "Category")
+                    b.HasOne("DarkHeresy.Models.Category", "Category")
                         .WithMany("Gear")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_Gear_Category");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.MeleeWeapon", b =>
+            modelBuilder.Entity("DarkHeresy.Models.MeleeWeapon", b =>
                 {
-                    b.HasOne("DarkHeresyCore.Models.Availability", "Availability")
+                    b.HasOne("DarkHeresy.Models.Availability", "Availability")
                         .WithMany("MeleeWeapons")
                         .HasForeignKey("AvailabilityId")
                         .HasConstraintName("FK_MeleeWeapons_Availability");
 
-                    b.HasOne("DarkHeresyCore.Models.Category", "Category")
+                    b.HasOne("DarkHeresy.Models.Category", "Category")
                         .WithMany("MeleeWeapons")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_MeleeWeapons_Category");
 
-                    b.HasOne("DarkHeresyCore.Models.Class", "Class")
+                    b.HasOne("DarkHeresy.Models.Class", "Class")
                         .WithMany("MeleeWeapons")
                         .HasForeignKey("ClassId")
                         .HasConstraintName("FK_MeleeWeapons_Class");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.RangedWeapon", b =>
+            modelBuilder.Entity("DarkHeresy.Models.RangedWeapon", b =>
                 {
-                    b.HasOne("DarkHeresyCore.Models.Availability", "Availability")
+                    b.HasOne("DarkHeresy.Models.Availability", "Availability")
                         .WithMany("RangedWeapons")
                         .HasForeignKey("AvailabilityId")
                         .HasConstraintName("FK_RangedWeapons_Availability");
 
-                    b.HasOne("DarkHeresyCore.Models.Category", "Category")
+                    b.HasOne("DarkHeresy.Models.Category", "Category")
                         .WithMany("RangedWeapons")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_RangedWeapons_Category");
 
-                    b.HasOne("DarkHeresyCore.Models.Class", "Class")
+                    b.HasOne("DarkHeresy.Models.Class", "Class")
                         .WithMany("RangedWeapons")
                         .HasForeignKey("ClassId")
                         .HasConstraintName("FK_RangedWeapons_Class");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.Service", b =>
+            modelBuilder.Entity("DarkHeresy.Models.Service", b =>
                 {
-                    b.HasOne("DarkHeresyCore.Models.Availability", "Availability")
+                    b.HasOne("DarkHeresy.Models.Availability", "Availability")
                         .WithMany("Services")
                         .HasForeignKey("AvailabilityId")
                         .HasConstraintName("FK_Services_Availability");
 
-                    b.HasOne("DarkHeresyCore.Models.Category", "Category")
+                    b.HasOne("DarkHeresy.Models.Category", "Category")
                         .WithMany("Services")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_Services_Category");
                 });
 
-            modelBuilder.Entity("DarkHeresyCore.Models.WeaponUpgrade", b =>
+            modelBuilder.Entity("DarkHeresy.Models.WeaponUpgrade", b =>
                 {
-                    b.HasOne("DarkHeresyCore.Models.Availability", "Availability")
+                    b.HasOne("DarkHeresy.Models.Availability", "Availability")
                         .WithMany("WeaponUpgrades")
                         .HasForeignKey("AvailabilityId")
                         .HasConstraintName("FK_WeaponUpgrades_Availability");
 
-                    b.HasOne("DarkHeresyCore.Models.Category", "Category")
+                    b.HasOne("DarkHeresy.Models.Category", "Category")
                         .WithMany("WeaponUpgrades")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_WeaponUpgrades_Category");

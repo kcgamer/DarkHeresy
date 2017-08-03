@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DarkHeresy.Models;
 
-namespace DarkHeresyCore.Models
+namespace DarkHeresy.Models
 {
     public class Character
     {
@@ -31,6 +32,13 @@ namespace DarkHeresyCore.Models
         public int FatePoints { get; set; }
         public int? TotalXp { get; set; }
         public int? SpentXp { get; set; }
+        public int? HeadArmorId { get; set; }
+        public int? ChestArmorId { get; set; }
+        public int? LeftArmArmorId { get; set; }
+        public int? RightArmArmorId { get; set; }
+        public int? LeftLegArmorId { get; set; }
+        public int? RightLegArmorId { get; set; }
+
         public Armor HeadArmor { get; set; }
         public Armor ChestArmor { get; set; }
         public Armor LeftArmArmor { get; set; }
@@ -39,6 +47,8 @@ namespace DarkHeresyCore.Models
         public Armor RightLegArmor { get; set; }
 
         public ICollection<CharacterSkill> CharacterSkills { get; set; }
+        public ICollection<CharacterMelee> CharacterMelees { get; set; }
+        public ICollection<CharacterRanged> CharacterRangeds { get; set; }
 
     }
 }

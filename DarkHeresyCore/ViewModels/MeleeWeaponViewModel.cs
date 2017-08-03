@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using DarkHeresyCore.Models;
+using DarkHeresy.Models;
 
-namespace DarkHeresyCore.ViewModels
+namespace DarkHeresy.ViewModels
 {
     public class MeleeWeaponViewModel
     {

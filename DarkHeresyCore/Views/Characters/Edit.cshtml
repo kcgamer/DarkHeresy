@@ -1,4 +1,4 @@
-@model DarkHeresyCore.Models.Character
+@model DarkHeresy.ViewModels.CharacterViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -88,13 +88,6 @@
             <div class="col-md-10">
                 <input asp-for="Fellowship" class="form-control" />
                 <span asp-validation-for="Fellowship" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="CareerId" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="CareerId" class="form-control" />
-                <span asp-validation-for="CareerId" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">

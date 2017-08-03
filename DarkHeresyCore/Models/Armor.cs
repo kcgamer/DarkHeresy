@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace DarkHeresyCore.Models
+namespace DarkHeresy.Models
 {
     public  class Armor
     {
@@ -21,5 +21,12 @@ namespace DarkHeresyCore.Models
 
         public  Availability Availability { get; set; }
         public  Category Category { get; set; }
+
+        public ICollection<Character> HeadCharacters { get; set; }
+        public ICollection<Character> ChestCharacters { get; set; }
+        public ICollection<Character> LeftArmCharacters { get; set; }
+        public ICollection<Character> LeftLegCharacters { get; set; }
+        public ICollection<Character> RightArmCharacters { get; set; }
+        public ICollection<Character> RightLegCharacters { get; set; }
     }
 }

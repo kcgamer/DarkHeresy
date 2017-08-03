@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace DarkHeresyCore.Migrations
+namespace DarkHeresy.Migrations
 {
     public partial class InitialMigration : Migration
     {
