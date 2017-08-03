@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DarkHeresy.Models;
+using DarkHeresy.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -41,8 +42,8 @@ namespace DarkHeresy.Controllers
             {
                 return NotFound();
             }
-
-            return View(services);
+            var serviceViewModel = new ServiceViewModel(services);
+            return View(serviceViewModel);
         }
 
         // GET: Service/Create
@@ -68,7 +69,8 @@ namespace DarkHeresy.Controllers
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", service.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", service.CategoryId);
-            return View(service);
+            var serviceViewModel = new ServiceViewModel(service);
+            return View(serviceViewModel);
         }
 
         // GET: Service/Edit/5
@@ -86,7 +88,8 @@ namespace DarkHeresy.Controllers
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", services.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", services.CategoryId);
-            return View(services);
+            var serviceViewModel = new ServiceViewModel(services);
+            return View(serviceViewModel);
         }
 
         // POST: Service/Edit/5
@@ -123,7 +126,8 @@ namespace DarkHeresy.Controllers
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", service.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", service.CategoryId);
-            return View(service);
+            var serviceViewModel = new ServiceViewModel(service);
+            return View(serviceViewModel);
         }
 
         // GET: Service/Delete/5
@@ -142,8 +146,8 @@ namespace DarkHeresy.Controllers
             {
                 return NotFound();
             }
-
-            return View(services);
+            var serviceViewModel = new ServiceViewModel(services);
+            return View(serviceViewModel);
         }
 
         // POST: Service/Delete/5

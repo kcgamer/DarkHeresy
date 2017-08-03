@@ -34,7 +34,26 @@ namespace DarkHeresy.ViewModels
 
         public string Notes { get; set; }
 
-        public IEnumerable<Availability> Availability { get; set; }
-        public IEnumerable<Category> Category { get; set; }
+        public Availability Availability { get; set; }
+        public Category Category { get; set; }
+
+        public GearViewModel(Gear gear)
+        {
+            Id = gear.Id;
+            CategoryId = gear.CategoryId;
+            Name = gear.Name;
+            Weight = gear.Weight;
+            Cost = gear.Cost;
+            AvailabilityId = gear.AvailabilityId;
+            Source = gear.Source;
+            Notes = gear.Notes;
+            Availability = gear.Availability;
+            Category = gear.Category;
+        }
+
+        public GearViewModel()
+        {
+            Id = 0;
+        }
     }
 }

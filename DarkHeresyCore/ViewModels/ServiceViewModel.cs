@@ -40,7 +40,28 @@ namespace DarkHeresy.ViewModels
 
         public string Notes { get; set; }
 
-        public IEnumerable<Availability> Availability { get; set; }
-        public IEnumerable<Category> Category { get; set; }
+        public Availability Availability { get; set; }
+        public Category Category { get; set; }
+
+        public ServiceViewModel(Service service)
+        {
+            Id = service.Id;
+            CategoryId = service.CategoryId;
+            Name = service.Name;
+            Cost = service.Cost;
+            MaterialCost = service.MaterialCost;
+            Effect = service.Effect;
+            AvailabilityId = service.AvailabilityId;
+            Difficulty = service.Difficulty;
+            Source = service.Source;
+            Notes = service.Notes;
+            Availability = service.Availability;
+            Category = service.Category;
+        }
+
+        public ServiceViewModel()
+        {
+            Id = 0;
+        }
     }
 }

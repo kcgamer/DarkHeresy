@@ -52,9 +52,9 @@ namespace DarkHeresy.ViewModels
 
         public string Notes { get; set; }
 
-        public IEnumerable<Availability> Availabilities { get; set; }
-        public IEnumerable<Category> Categories { get; set; }
-        public IEnumerable<Class> Classes { get; set; }
+        public Availability Availability { get; set; }
+        public Category Category { get; set; }
+        public Class Class { get; set; }
 
         public MeleeWeaponViewModel(MeleeWeapon meleeWeapon)
         {
@@ -72,6 +72,10 @@ namespace DarkHeresy.ViewModels
             Source = meleeWeapon.Source;
             TwoHanded = meleeWeapon.TwoHanded;
             Notes = meleeWeapon.Notes;
+            Availability = meleeWeapon.Availability;
+            Category = meleeWeapon.Category;
+            Class = meleeWeapon.Class;
+
         }
 
         public MeleeWeaponViewModel()

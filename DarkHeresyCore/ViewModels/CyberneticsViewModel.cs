@@ -31,7 +31,25 @@ namespace DarkHeresy.ViewModels
 
         public string Notes { get; set; }
 
-        public IEnumerable<Availability> Availability { get; set; }
-        public IEnumerable<Category> Category { get; set; }
+        public Availability Availability { get; set; }
+        public Category Category { get; set; }
+
+        public CyberneticsViewModel(Cybernetic cybernetic)
+        {
+            Id = cybernetic.Id;
+            CategoryId = cybernetic.CategoryId;
+            Name = cybernetic.Name;
+            Cost = cybernetic.Cost;
+            AvailabilityId = cybernetic.AvailabilityId;
+            Source = cybernetic.Source;
+            Notes = cybernetic.Notes;
+            Availability = cybernetic.Availability;
+            Category = cybernetic.Category;
+        }
+
+        public CyberneticsViewModel()
+        {
+            Id = 0;
+        }
     }
 }

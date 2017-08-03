@@ -34,7 +34,26 @@ namespace DarkHeresy.ViewModels
 
         public string Notes { get; set; }
 
-        public IEnumerable<Availability> Availability { get; set; }
-        public IEnumerable<Category> Category { get; set; }
+        public Availability Availability { get; set; }
+        public Category Category { get; set; }
+
+        public WeaponUpgradeViewModel(WeaponUpgrade weaponUpgrade)
+        {
+            Id = weaponUpgrade.Id;
+            CategoryId = weaponUpgrade.CategoryId;
+            Name = weaponUpgrade.Name;
+            Weight = weaponUpgrade.Weight;
+            Cost = weaponUpgrade.Cost;
+            AvailabilityId = weaponUpgrade.AvailabilityId;
+            Source = weaponUpgrade.Source;
+            Notes = weaponUpgrade.Notes;
+            Availability = weaponUpgrade.Availability;
+            Category = weaponUpgrade.Category;
+        }
+
+        public WeaponUpgradeViewModel()
+        {
+            Id = 0;
+        }
     }
 }

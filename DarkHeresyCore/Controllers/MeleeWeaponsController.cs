@@ -37,17 +37,17 @@ namespace DarkHeresy.Controllers
                 return NotFound();
             }
 
-            var meleeWeapons = await _context.MeleeWeapons
+            var meleeWeapon = await _context.MeleeWeapons
                 .Include(m => m.Availability)
                 .Include(m => m.Category)
                 .Include(m => m.Class)
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (meleeWeapons == null)
+            if (meleeWeapon == null)
             {
                 return NotFound();
             }
-
-            return View(meleeWeapons);
+            var meleeWeaponViewModel = new MeleeWeaponViewModel(meleeWeapon);
+            return View(meleeWeaponViewModel);
         }
 
         // GET: MeleeWeapon/Create
@@ -75,7 +75,8 @@ namespace DarkHeresy.Controllers
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", meleeWeapon.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", meleeWeapon.CategoryId);
             ViewData["ClassId"] = new SelectList(_context.Class, "Id", "Name", meleeWeapon.ClassId);
-            return View(meleeWeapon);
+            var meleeWeaponViewModel = new MeleeWeaponViewModel(meleeWeapon);
+            return View(meleeWeaponViewModel);
         }
 
         // GET: MeleeWeapon/Edit/5
@@ -86,15 +87,17 @@ namespace DarkHeresy.Controllers
                 return NotFound();
             }
 
-            var meleeWeapons = await _context.MeleeWeapons.SingleOrDefaultAsync(m => m.Id == id);
-            if (meleeWeapons == null)
+            var meleeWeapon = await _context.MeleeWeapons
+                .SingleOrDefaultAsync(m => m.Id == id);
+            if (meleeWeapon == null)
             {
                 return NotFound();
             }
-            ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", meleeWeapons.AvailabilityId);
-            ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", meleeWeapons.CategoryId);
-            ViewData["ClassId"] = new SelectList(_context.Class, "Id", "Name", meleeWeapons.ClassId);
-            var viewModel = new MeleeWeaponViewModel(meleeWeapons);
+            ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", meleeWeapon.AvailabilityId);
+            ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", meleeWeapon.CategoryId);
+            ViewData["ClassId"] = new SelectList(_context.Class, "Id", "Name", meleeWeapon.ClassId);
+            var viewModel = new MeleeWeaponViewModel(meleeWeapon);
+
             return View("Edit", viewModel);
         }
 
@@ -133,7 +136,9 @@ namespace DarkHeresy.Controllers
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", meleeWeapon.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", meleeWeapon.CategoryId);
             ViewData["ClassId"] = new SelectList(_context.Class, "Id", "Name", meleeWeapon.ClassId);
-            return View(meleeWeapon);
+
+            var meleeWeaponViewModel = new MeleeWeaponViewModel(meleeWeapon);
+            return View(meleeWeaponViewModel);
         }
 
         // GET: MeleeWeapon/Delete/5
@@ -144,17 +149,17 @@ namespace DarkHeresy.Controllers
                 return NotFound();
             }
 
-            var meleeWeapons = await _context.MeleeWeapons
+            var meleeWeapon = await _context.MeleeWeapons
                 .Include(m => m.Availability)
                 .Include(m => m.Category)
                 .Include(m => m.Class)
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (meleeWeapons == null)
+            if (meleeWeapon == null)
             {
                 return NotFound();
             }
-
-            return View(meleeWeapons);
+            var meleeWeaponViewModel = new MeleeWeaponViewModel(meleeWeapon);
+            return View(meleeWeaponViewModel);
         }
 
         // POST: MeleeWeapon/Delete/5

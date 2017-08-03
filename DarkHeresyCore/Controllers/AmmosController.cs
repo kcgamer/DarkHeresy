@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DarkHeresy.Models;
+using DarkHeresy.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -45,8 +46,8 @@ namespace DarkHeresy.Controllers
             {
                 return NotFound();
             }
-
-            return View(ammo);
+            var ammoViewModel = new AmmoViewModel(ammo);
+            return View(ammoViewModel);
         }
 
         // GET: Ammos/Create
@@ -70,7 +71,8 @@ namespace DarkHeresy.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", ammo.AvailabilityId);
-            return View(ammo);
+            var ammoViewModel = new AmmoViewModel(ammo);
+            return View(ammoViewModel);
         }
 
         // GET: Ammos/Edit/5
@@ -87,7 +89,9 @@ namespace DarkHeresy.Controllers
                 return NotFound();
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", ammo.AvailabilityId);
-            return View(ammo);
+
+            var ammoViewModel = new AmmoViewModel(ammo);
+            return View(ammoViewModel);
         }
 
         // POST: Ammos/Edit/5
@@ -123,7 +127,8 @@ namespace DarkHeresy.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", ammo.AvailabilityId);
-            return View(ammo);
+            var ammoViewModel = new AmmoViewModel(ammo);
+            return View(ammoViewModel);
         }
 
         // GET: Ammos/Delete/5
@@ -141,8 +146,8 @@ namespace DarkHeresy.Controllers
             {
                 return NotFound();
             }
-
-            return View(ammo);
+            var ammoViewModel = new AmmoViewModel(ammo);
+            return View(ammoViewModel);
         }
 
         // POST: Ammos/Delete/5

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DarkHeresy.Models;
+using DarkHeresy.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -42,8 +43,8 @@ namespace DarkHeresy.Controllers
             {
                 return NotFound();
             }
-
-            return View(rangedWeapons);
+            var rangedWeaponViewModel = new RangedWeaponViewModel(rangedWeapons);
+            return View(rangedWeaponViewModel);
         }
 
         // GET: RangedWeapon/Create
@@ -71,7 +72,8 @@ namespace DarkHeresy.Controllers
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", rangedWeapon.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", rangedWeapon.CategoryId);
             ViewData["ClassId"] = new SelectList(_context.Class, "Id", "Name", rangedWeapon.ClassId);
-            return View(rangedWeapon);
+            var rangedWeaponViewModel = new RangedWeaponViewModel(rangedWeapon);
+            return View(rangedWeaponViewModel);
         }
 
         // GET: RangedWeapon/Edit/5
@@ -90,7 +92,8 @@ namespace DarkHeresy.Controllers
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", rangedWeapons.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", rangedWeapons.CategoryId);
             ViewData["ClassId"] = new SelectList(_context.Class, "Id", "Name", rangedWeapons.ClassId);
-            return View(rangedWeapons);
+            var rangedWeaponViewModel = new RangedWeaponViewModel(rangedWeapons);
+            return View(rangedWeaponViewModel);
         }
 
         // POST: RangedWeapon/Edit/5
@@ -128,7 +131,8 @@ namespace DarkHeresy.Controllers
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", rangedWeapon.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", rangedWeapon.CategoryId);
             ViewData["ClassId"] = new SelectList(_context.Class, "Id", "Name", rangedWeapon.ClassId);
-            return View(rangedWeapon);
+            var rangedWeaponViewModel = new RangedWeaponViewModel(rangedWeapon);
+            return View(rangedWeaponViewModel);
         }
 
         // GET: RangedWeapon/Delete/5
@@ -148,8 +152,8 @@ namespace DarkHeresy.Controllers
             {
                 return NotFound();
             }
-
-            return View(rangedWeapons);
+            var rangedWeaponViewModel = new RangedWeaponViewModel(rangedWeapons);
+            return View(rangedWeaponViewModel);
         }
 
         // POST: RangedWeapon/Delete/5

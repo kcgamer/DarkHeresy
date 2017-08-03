@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DarkHeresy.Models;
+using DarkHeresy.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -33,16 +34,16 @@ namespace DarkHeresy.Controllers
                 return NotFound();
             }
 
-            var weaponUpgrades = await _context.WeaponUpgrades
+            var weaponUpgrade = await _context.WeaponUpgrades
                 .Include(w => w.Availability)
                 .Include(w => w.Category)
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (weaponUpgrades == null)
+            if (weaponUpgrade == null)
             {
                 return NotFound();
             }
-
-            return View(weaponUpgrades);
+            var weaponUpgradeViewModel = new WeaponUpgradeViewModel(weaponUpgrade);
+            return View(weaponUpgradeViewModel);
         }
 
         // GET: WeaponUpgrade/Create
@@ -68,7 +69,8 @@ namespace DarkHeresy.Controllers
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", weaponUpgrade.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", weaponUpgrade.CategoryId);
-            return View(weaponUpgrade);
+            var weaponUpgradeViewModel = new WeaponUpgradeViewModel(weaponUpgrade);
+            return View(weaponUpgradeViewModel);
         }
 
         // GET: WeaponUpgrade/Edit/5
@@ -86,7 +88,8 @@ namespace DarkHeresy.Controllers
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", weaponUpgrades.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", weaponUpgrades.CategoryId);
-            return View(weaponUpgrades);
+            var weaponUpgradeViewModel = new WeaponUpgradeViewModel(weaponUpgrades);
+            return View(weaponUpgradeViewModel);
         }
 
         // POST: WeaponUpgrade/Edit/5
@@ -123,7 +126,8 @@ namespace DarkHeresy.Controllers
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", weaponUpgrade.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", weaponUpgrade.CategoryId);
-            return View(weaponUpgrade);
+            var weaponUpgradeViewModel = new WeaponUpgradeViewModel(weaponUpgrade);
+            return View(weaponUpgradeViewModel);
         }
 
         // GET: WeaponUpgrade/Delete/5
@@ -142,8 +146,8 @@ namespace DarkHeresy.Controllers
             {
                 return NotFound();
             }
-
-            return View(weaponUpgrades);
+            var weaponUpgradeViewModel = new WeaponUpgradeViewModel(weaponUpgrades);
+            return View(weaponUpgradeViewModel);
         }
 
         // POST: WeaponUpgrade/Delete/5
@@ -151,7 +155,8 @@ namespace DarkHeresy.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var weaponUpgrades = await _context.WeaponUpgrades.SingleOrDefaultAsync(m => m.Id == id);
+            var weaponUpgrades = await _context.WeaponUpgrades
+                .SingleOrDefaultAsync(m => m.Id == id);
             _context.WeaponUpgrades.Remove(weaponUpgrades);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");

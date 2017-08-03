@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DarkHeresy.Models;
+using DarkHeresy.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -21,8 +22,11 @@ namespace DarkHeresy.Controllers
         // GET: Armors
         public async Task<IActionResult> Index()
         {
-            var darkHeresyContext = _context.Armor.Include(a => a.Availability).Include(a => a.Category);
-            return View(await darkHeresyContext.ToListAsync());
+            var darkHeresyContext = _context.Armor
+                .Include(a => a.Availability)
+                .Include(a => a.Category)
+                .ToListAsync();
+            return View(await darkHeresyContext);
         }
 
         // GET: Armors/Details/5
@@ -41,8 +45,8 @@ namespace DarkHeresy.Controllers
             {
                 return NotFound();
             }
-
-            return View(armor);
+            var armorViewModel = new ArmorViewModel(armor);
+            return View(armorViewModel);
         }
 
         // GET: Armors/Create
@@ -50,6 +54,7 @@ namespace DarkHeresy.Controllers
         {
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name");
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name");
+
             return View();
         }
 
@@ -68,7 +73,8 @@ namespace DarkHeresy.Controllers
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", armor.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", armor.CategoryId);
-            return View(armor);
+            var armorViewModel = new ArmorViewModel(armor);
+            return View(armorViewModel);
         }
 
         // GET: Armors/Edit/5
@@ -86,7 +92,8 @@ namespace DarkHeresy.Controllers
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", armor.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", armor.CategoryId);
-            return View(armor);
+            var armorViewModel = new ArmorViewModel(armor);
+            return View(armorViewModel);
         }
 
         // POST: Armors/Edit/5
@@ -123,7 +130,8 @@ namespace DarkHeresy.Controllers
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", armor.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", armor.CategoryId);
-            return View(armor);
+            var armorViewModel = new ArmorViewModel(armor);
+            return View(armorViewModel);
         }
 
         // GET: Armors/Delete/5
@@ -142,8 +150,8 @@ namespace DarkHeresy.Controllers
             {
                 return NotFound();
             }
-
-            return View(armor);
+            var armorViewModel = new ArmorViewModel(armor);
+            return View(armorViewModel);
         }
 
         // POST: Armors/Delete/5

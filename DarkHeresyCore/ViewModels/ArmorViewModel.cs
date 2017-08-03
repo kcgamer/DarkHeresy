@@ -42,7 +42,27 @@ namespace DarkHeresy.ViewModels
 
         public string Notes { get; set; }
 
-        public IEnumerable<Availability> Availability { get; set; }
-        public IEnumerable<Category> Category { get; set; }
+        public Availability Availability { get; set; }
+        public Category Category { get; set; }
+
+        public ArmorViewModel(Armor armor)
+        {
+            Id = armor.Id;
+            Name = armor.Name;
+            LocCovered = armor.LocCovered;
+            Ap = armor.Ap;
+            Weight = armor.Weight;
+            Cost = armor.Cost;
+            Availability = armor.Availability;
+            AvailabilityId = armor.AvailabilityId;
+            Source = armor.Source;
+            Notes = armor.Notes;
+            Category = armor.Category;
+        }
+
+        public ArmorViewModel()
+        {
+            Id = 0;
+        }
     }
 }

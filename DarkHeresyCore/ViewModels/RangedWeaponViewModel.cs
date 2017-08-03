@@ -56,8 +56,36 @@ namespace DarkHeresy.ViewModels
 
         public string Notes { get; set; }
 
-        public IEnumerable<Availability> Availability { get; set; }
-        public IEnumerable<Category> Category { get; set; }
-        public IEnumerable<Class> Class { get; set; }
+        public Availability Availability { get; set; }
+        public Category Category { get; set; }
+        public Class Class { get; set; }
+
+        public RangedWeaponViewModel(RangedWeapon rangedWeapon)
+        {
+            Id = rangedWeapon.Id;
+            Name = rangedWeapon.Name;
+            CategoryId = rangedWeapon.CategoryId;
+            ClassId = rangedWeapon.ClassId;
+            Range = rangedWeapon.Range;
+            RoF = rangedWeapon.RoF;
+            Damage = rangedWeapon.Damage;
+            Pen = rangedWeapon.Pen;
+            Clip = rangedWeapon.Clip;
+            Reload = rangedWeapon.Reload;
+            Special = rangedWeapon.Special;
+            Weight = rangedWeapon.Weight;
+            Cost = rangedWeapon.Cost;
+            AvailabilityId = rangedWeapon.AvailabilityId;
+            Source = rangedWeapon.Source;
+            Notes = rangedWeapon.Notes;
+            Availability = rangedWeapon.Availability;
+            Category = rangedWeapon.Category;
+            Class = rangedWeapon.Class;
+        }
+
+        public RangedWeaponViewModel()
+        {
+            Id = 0;
+        }
     }
 }

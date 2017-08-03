@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DarkHeresy.Models
+﻿namespace DarkHeresy.Models
 {
-    public  class Ammo
+    public class Ammo
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -13,6 +10,6 @@ namespace DarkHeresy.Models
         public string Source { get; set; }
         public string Notes { get; set; }
 
-        public  Availability Availability { get; set; }
+        public Availability Availability { get; set; }
     }
 }

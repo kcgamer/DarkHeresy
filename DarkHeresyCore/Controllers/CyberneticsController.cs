@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DarkHeresy.Models;
+using DarkHeresy.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -41,8 +42,8 @@ namespace DarkHeresy.Controllers
             {
                 return NotFound();
             }
-
-            return View(cybernetics);
+            var cyberneticsViewModel = new CyberneticsViewModel(cybernetics);
+            return View(cyberneticsViewModel);
         }
 
         // GET: Cybernetic/Create
@@ -68,7 +69,8 @@ namespace DarkHeresy.Controllers
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", cybernetic.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", cybernetic.CategoryId);
-            return View(cybernetic);
+            var cyberneticsViewModel = new CyberneticsViewModel(cybernetic);
+            return View(cyberneticsViewModel);
         }
 
         // GET: Cybernetic/Edit/5
@@ -86,7 +88,8 @@ namespace DarkHeresy.Controllers
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", cybernetics.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", cybernetics.CategoryId);
-            return View(cybernetics);
+            var cyberneticsViewModel = new CyberneticsViewModel(cybernetics);
+            return View(cyberneticsViewModel);
         }
 
         // POST: Cybernetic/Edit/5
@@ -123,7 +126,8 @@ namespace DarkHeresy.Controllers
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", cybernetic.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", cybernetic.CategoryId);
-            return View(cybernetic);
+            var cyberneticsViewModel = new CyberneticsViewModel(cybernetic);
+            return View(cyberneticsViewModel);
         }
 
         // GET: Cybernetic/Delete/5
@@ -142,8 +146,8 @@ namespace DarkHeresy.Controllers
             {
                 return NotFound();
             }
-
-            return View(cybernetics);
+            var cyberneticsViewModel = new CyberneticsViewModel(cybernetics);
+            return View(cyberneticsViewModel);
         }
 
         // POST: Cybernetic/Delete/5

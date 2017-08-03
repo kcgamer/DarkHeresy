@@ -29,6 +29,23 @@ namespace DarkHeresy.ViewModels
 
         public string Notes { get; set; }
 
-        public IEnumerable<Availability> Availability { get; set; }
+        public Availability Availability { get; set; }
+
+        public AmmoViewModel(Ammo ammo)
+        {
+            Id = ammo.Id;
+            Name = ammo.Name;
+            Cost = ammo.Cost;
+            Amount = ammo.Amount;
+            AvailabilityId = ammo.AvailabilityId;
+            Source = ammo.Source;
+            Notes = ammo.Notes;
+            Availability = ammo.Availability;
+        }
+
+        public AmmoViewModel()
+        {
+            Id = 0;
+        }
     }
 }

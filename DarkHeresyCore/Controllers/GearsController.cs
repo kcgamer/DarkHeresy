@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DarkHeresy.Models;
+using DarkHeresy.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -41,8 +42,8 @@ namespace DarkHeresy.Controllers
             {
                 return NotFound();
             }
-
-            return View(gear);
+            var gearViewModel = new GearViewModel(gear);
+            return View(gearViewModel);
         }
 
         // GET: Gears/Create
@@ -68,7 +69,8 @@ namespace DarkHeresy.Controllers
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", gear.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", gear.CategoryId);
-            return View(gear);
+            var gearViewModel = new GearViewModel(gear);
+            return View(gearViewModel);
         }
 
         // GET: Gears/Edit/5
@@ -86,7 +88,8 @@ namespace DarkHeresy.Controllers
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", gear.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", gear.CategoryId);
-            return View(gear);
+            var gearViewModel = new GearViewModel(gear);
+            return View(gearViewModel);
         }
 
         // POST: Gears/Edit/5
@@ -123,7 +126,8 @@ namespace DarkHeresy.Controllers
             }
             ViewData["AvailabilityId"] = new SelectList(_context.Availability, "Id", "Name", gear.AvailabilityId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", gear.CategoryId);
-            return View(gear);
+            var gearViewModel = new GearViewModel(gear);
+            return View(gearViewModel);
         }
 
         // GET: Gears/Delete/5
@@ -142,8 +146,8 @@ namespace DarkHeresy.Controllers
             {
                 return NotFound();
             }
-
-            return View(gear);
+            var gearViewModel = new GearViewModel(gear);
+            return View(gearViewModel);
         }
 
         // POST: Gears/Delete/5
